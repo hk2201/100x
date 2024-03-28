@@ -4,13 +4,15 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
+import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
+import TextField from "@mui/material/TextField";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  // width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -34,7 +36,8 @@ export function Header({ toBeAdded }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      {/* <AddCircleSharpIcon /> */}
+      <AddCircleSharpIcon onClick={handleOpen} />
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,47 +45,56 @@ export function Header({ toBeAdded }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <input
-            type="text"
-            placeholder="Name"
-            onChange={(e) => {
-              setNeww({ ...neww, Name: e.target.value });
+          <div
+            style={{
+              display: "flex",
+              maxWidth: "200px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "10px",
             }}
-          ></input>
+          >
+            <TextField
+              label="Name"
+              type="text"
+              onChange={(e) => {
+                setNeww({ ...neww, Name: e.target.value });
+              }}
+            ></TextField>
+            <TextField
+              label="Description"
+              type="text"
+              onChange={(e) => {
+                setNeww({ ...neww, Description: e.target.value });
+              }}
+            ></TextField>
+            <TextField
+              label="Interests"
+              type="text"
+              onChange={(e) => {
+                var store = "";
+                store = e.target.value; // Update the Name property of the first item
+                const temp = store.split(",");
+                setNeww({ ...neww, Interests: temp });
+              }}
+            ></TextField>
+            <TextField
+              label="Linkedn"
+              type="text"
+              onChange={(e) => {
+                setNeww({ ...neww, Linkedn: e.target.value });
+              }}
+            ></TextField>
+            <TextField
+              label="Twitter"
+              type="text"
+              onChange={(e) => {
+                setNeww({ ...neww, twitter: e.target.value });
+              }}
+            ></TextField>
 
-          <input
-            type="text"
-            placeholder="Description"
-            onChange={(e) => {
-              setNeww({ ...neww, Description: e.target.value });
-            }}
-          ></input>
-          <input
-            type="text"
-            placeholder="No of interests?"
-            onChange={(e) => {
-              var store = "";
-              store = e.target.value; // Update the Name property of the first item
-              const temp = store.split(",");
-              setNeww({ ...neww, Interests: temp });
-            }}
-          ></input>
-
-          <input
-            type="text"
-            placeholder="linkedn"
-            onChange={(e) => {
-              setNeww({ ...neww, Linkedn: e.target.value });
-            }}
-          ></input>
-          <input
-            type="text"
-            placeholder="twitter"
-            onChange={(e) => {
-              setNeww({ ...neww, twitter: e.target.value });
-            }}
-          ></input>
-          <Button onClick={sendIt}>submit</Button>
+            <Button onClick={sendIt}>submit</Button>
+          </div>
         </Box>
       </Modal>
     </div>
